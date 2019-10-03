@@ -156,8 +156,8 @@ app.post('/signup', function (req, res, next) /* {
                 req.flash('errors', { msg: 'Recaptcha is invalid!' });
                 return res.redirect('/signup');
                
-        })
-        */;
+        });
+        */
     }, userController.postSignup
 );
 app.get('/contact', contactController.getContact);
