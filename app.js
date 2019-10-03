@@ -148,12 +148,14 @@ app.get('/reset/:token', userController.getReset);
 app.post('/reset/:token', userController.postReset);
 app.get('/signup', userController.getSignup);
 app.post('/signup', function (req, res, next) {
-        recaptcha.verify(req, function (error) {
+        /* recaptcha.verify(req, function (error) {
+          
             if (!error)
                 return next();
             else
                 req.flash('errors', { msg: 'Recaptcha is invalid!' });
                 return res.redirect('/signup');
+           */     
         });
     }, userController.postSignup
 );
