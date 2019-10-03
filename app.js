@@ -157,9 +157,9 @@ app.post('/signup', function (req, res, next) /* {
                 return res.redirect('/signup');
                
         });
-        */
+        
     }, userController.postSignup
-);
+);*/
 app.get('/contact', contactController.getContact);
 app.post('/contact', contactController.postContact);
 app.get('/account', passportConfig.isAuthenticated, passportConfig.ensureTotp, userController.getAccount);
