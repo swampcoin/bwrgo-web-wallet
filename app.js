@@ -82,10 +82,8 @@ app.use(sass({
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-/*
 app.use(expressValidator());
 recaptcha.init(process.env.RECAPTCHA_PUBLIC, process.env.RECAPTCHA_PRIVATE);
-*/
 app.use(session({
   resave: true,
   saveUninitialized: true,
@@ -146,7 +144,7 @@ app.post('/forgot', userController.postForgot);
 app.get('/reset/:token', userController.getReset);
 app.post('/reset/:token', userController.postReset);
 app.get('/signup', userController.getSignup);
-app.post('/signup', function (req, res, next) /* {
+app.post('/signup', function (req, res, next)  {
          recaptcha.verify(req, function (error) {
           
             if (!error)
@@ -157,7 +155,7 @@ app.post('/signup', function (req, res, next) /* {
                
         });
         
-    }, userController.postSignup */
+    }, userController.postSignup 
 );
 app.get('/contact', contactController.getContact);
 app.post('/contact', contactController.postContact);
