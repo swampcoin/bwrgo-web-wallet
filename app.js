@@ -22,7 +22,9 @@ const sass = require('node-sass-middleware');
 const multer = require('multer');
 const bitcoin = require('bitcoin');
 const WAValidator = require('wallet-address-validator');
+/*
 const recaptcha = require('express-recaptcha');
+*/
 const QRCode = require('qrcode');
 const base32 = require('thirty-two');
 const sprintf = require('sprintf');
@@ -80,8 +82,10 @@ app.use(sass({
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+/*
 app.use(expressValidator());
 recaptcha.init(process.env.RECAPTCHA_PUBLIC, process.env.RECAPTCHA_PRIVATE);
+*/
 app.use(session({
   resave: true,
   saveUninitialized: true,
@@ -124,15 +128,15 @@ app.use(express.static(path.join(__dirname, 'public'), { maxAge: 31557600000 }))
  */
 app.get('/', homeController.index);
 app.get('/login', userController.getLogin);
-app.post('/login', function (req, res, next) {
+app.post('/login', function (req, res, next)/* {
         recaptcha.verify(req, function (error) {
             if (!error)
                 return next();
             else
                 req.flash('errors', { msg: 'Recaptcha is invalid!' });
                 return res.redirect('/login');        
-        });
-    }, userController.postLogin
+        } );
+    }, userController.postLogin*/
 );
 app.get('/2fa', passportConfig.isAuthenticated, userController.get2FA);
 app.post('/2fa', passportConfig.isAuthenticated, userController.post2FA);
@@ -142,7 +146,7 @@ app.post('/forgot', userController.postForgot);
 app.get('/reset/:token', userController.getReset);
 app.post('/reset/:token', userController.postReset);
 app.get('/signup', userController.getSignup);
-app.post('/signup', function (req, res, next)  {
+app.post('/signup', function (req, res, next) /* {
          recaptcha.verify(req, function (error) {
           
             if (!error)
@@ -153,7 +157,7 @@ app.post('/signup', function (req, res, next)  {
                
         });
         
-    }, userController.postSignup
+    }, userController.postSignup */
 );
 app.get('/contact', contactController.getContact);
 app.post('/contact', contactController.postContact);
